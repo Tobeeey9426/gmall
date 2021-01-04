@@ -27,3 +27,38 @@ spring:
           uri: lb://sms-service
           predicates:
             - Path=/sms/**
+        - id: search-route
+          uri: lb://search-service
+          predicates:
+            - Host=search.gmall.com
+        - id: index-route
+          uri: lb://index-service
+          predicates:
+            - Host=gmall.com, www.gmall.com
+          filters:
+            - Auth=/
+        - id: index-route2
+          uri: lb://index-service
+          predicates:
+            - Path=/index/**
+        - id: item-route
+          uri: lb://item-service
+          predicates:
+            - Host=item.gmall.com
+        - id: item-route2
+          uri: lb://item-service
+          predicates:
+            - Path=/item/**
+        - id: auth-route
+          uri: lb://auth-service
+          predicates:
+            - Host=sso.gmall.com
+        - id: cart-route
+          uri: lb://cart-service
+          predicates:
+            - Host=cart.gmall.com
+
+auth:
+  jwt:
+    pubKeyPath: D:\develop\Code\gulishangcheng\rsa\rsa.pub
+    cookieName: GMALL-TOKEN
