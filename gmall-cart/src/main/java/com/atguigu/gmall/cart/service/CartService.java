@@ -62,8 +62,6 @@ public class CartService {
             cart = JSON.parseObject(json, Cart.class);
             cart.setCount(cart.getCount().add(count));
             // 更新到redis
-
-
             this.cartMapper.update(cart , new UpdateWrapper<Cart>().eq("user_id",userId).eq("sku_id",skuId));
         }else {
             // 如果不包含,则新增数量

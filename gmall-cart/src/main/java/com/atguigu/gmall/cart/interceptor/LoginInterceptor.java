@@ -58,7 +58,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         return true;
     }
 
-
+    /**
+     * 封装了一个获取线程局部变量值的静态方法
+     * @return
+     */
     public static UserInfo getUserInfo(){
         return THREAD_LOCAL.get();
     }
